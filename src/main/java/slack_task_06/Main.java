@@ -12,18 +12,30 @@ public class Main {
 
         Integer randomNumbersArray[] = new Integer[ARRAY_SIZE];
 
-        for (int i = 0; i < ARRAY_SIZE; i++) {
-            randomNumbersArray[i] = random.nextInt(21) - 10;
-        }
+        randomFillArray(random, randomNumbersArray);
 
-        for (int number : randomNumbersArray) {
-            System.out.print(" " + number);
-            System.out.println();
-        }
+        printArray(randomNumbersArray);
 
+        findMaxMinValues(randomNumbersArray);
+    }
+
+    private static void findMaxMinValues(Integer[] randomNumbersArray) {
         List<Integer> randomNumbersList = Arrays.asList(randomNumbersArray);
 
         System.out.println("Max = " + Collections.max(randomNumbersList));
         System.out.println("Min = " + Collections.min(randomNumbersList));
+    }
+
+    private static void printArray(Integer[] randomNumbersArray) {
+        for (int number : randomNumbersArray) {
+            System.out.print(" " + number);
+            System.out.println();
+        }
+    }
+
+    private static void randomFillArray(Random random, Integer[] randomNumbersArray) {
+        for (int i = 0; i < ARRAY_SIZE; i++) {
+            randomNumbersArray[i] = random.nextInt(21) - 10;
+        }
     }
 }
