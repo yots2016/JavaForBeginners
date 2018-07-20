@@ -53,3 +53,4 @@ fabric.properties
 # Editor-based Rest Client
 .idea/httpRequests
 
+Буде вилучено src/main/java/slack_task_03_04/Test.java

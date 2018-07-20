@@ -1,4 +1,4 @@
-package slack_task_03;
+package slack_task_03_04;
 
 public class Main {
     private static int a;
