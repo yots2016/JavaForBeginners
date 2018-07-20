@@ -22,8 +22,14 @@ public class Main {
     private static void findMaxMinValues(Integer[] randomNumbersArray) {
         List<Integer> randomNumbersList = Arrays.asList(randomNumbersArray);
 
-        System.out.println("Max = " + Collections.max(randomNumbersList));
-        System.out.println("Min = " + Collections.min(randomNumbersList));
+        int max = Collections.max(randomNumbersList);
+        int min = Collections.min(randomNumbersList);
+
+        int indexOfMax = randomNumbersList.indexOf(max);
+        int indexOfMin = randomNumbersList.indexOf(min);
+
+        System.out.println("Max randomNumbersArray[" + indexOfMax + "] = " + max);
+        System.out.println("Min randomNumbersArray[" + indexOfMin + "] = " + min);
     }
 
     private static void printArray(Integer[] randomNumbersArray) {
