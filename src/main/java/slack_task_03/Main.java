@@ -8,7 +8,7 @@ public class Main {
         a = 10;
         b = 7;
 
-        System.out.println(sum(a, b));
+        System.out.println(sum(a, b)); //the amount is deducted
     }
 
     private static int sum(int a, int b) {

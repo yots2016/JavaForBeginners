@@ -9,9 +9,10 @@ public class Bonus2 {
         Scanner scanner = new Scanner(System.in);
 
         for (int i = 0; i < 3; i++) {
-            integers.add(scanner.nextInt());
+            integers.add(scanner.nextInt()); //the number values is read
         }
 
+        //definition of maximum and minimum values
         System.out.println("Max " + Collections.max(integers));
         System.out.println("Min " + Collections.min(integers));
     }
