@@ -35,8 +35,10 @@ public class Main {
     private static void printArray(Integer[] randomNumbersArray) {
         for (int number : randomNumbersArray) {
             System.out.print(" " + number);
-            System.out.println();
         }
+
+        System.out.println();
+        System.out.println();
     }
 
     private static void randomFillArray(Random random, Integer[] randomNumbersArray) {
