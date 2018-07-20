@@ -1,8 +1,6 @@
 package slack_task_06;
 
 import java.util.*;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Main {
     private final static int ARRAY_SIZE = 10;
