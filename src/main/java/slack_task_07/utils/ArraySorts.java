@@ -1,6 +1,7 @@
 package slack_task_07.utils;
 
 public interface ArraySorts {
+    // метод для сортування вибором
     static void choiceSort(int[] unsortedArray) {
         long start = System.nanoTime();
 
@@ -24,6 +25,7 @@ public interface ArraySorts {
         System.out.println("Sort time by choice sort = " + (stop - start));
     }
 
+    //метод для сортування бульбашкою
     static void bubbleSort(int[] unsortedArray) {
         long start = System.nanoTime();
 
@@ -47,6 +49,7 @@ public interface ArraySorts {
         System.out.println("Sort time by bubble sort = " + (stop - start));
     }
 
+    //метод для сортування вставкою
     static void insertSort(int[] unsortedArray) {
         long start = System.nanoTime();
 
