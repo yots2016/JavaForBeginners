@@ -14,8 +14,8 @@ public class Main {
     }
 
     //Метод поверення рядка складеного з вхідних параметрів
-    private static String functionThatReturnsString(String string, int integer, double numberWithFloatingPoint) {
-        return ("S = " + string + " + " + integer + " + " + numberWithFloatingPoint + ".");
+    private static String functionThatReturnsString(String characterString, int number, double numberWithFloatingPoint) {
+        return ("S = " + characterString + " + " + number + " + " + numberWithFloatingPoint + ".");
     }
 
     //Метод перевертання масиву
@@ -38,6 +38,11 @@ public class Main {
          складуться у порядку від останнього витягнутого до першоого. Бо ця дія робиться не рекурсивно.
          Рекурсивно викликається лише метод з параметром без першого символу.
         */
-        return str.isEmpty() ? "" : reverseString(str.substring(1)) + str.charAt(0);
+        if (str != null) {
+            return str.isEmpty() ? "" : reverseString(str.substring(1)) + str.charAt(0);
+        } else {
+            return "";
+        }
+
     }
 }
