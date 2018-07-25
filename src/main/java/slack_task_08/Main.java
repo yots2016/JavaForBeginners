@@ -10,8 +10,7 @@ public class Main {
         System.out.println(Arrays.toString(getReversedArray(new int[] {1, 48, 78, 25, 13})));
         System.out.println();
 
-        String string = "Hello World! Hello Java! :-)";
-        System.out.println(reverseString(string));
+        System.out.println(reverseString("Hello World! Hello Java! :-)"));
     }
 
     //Метод поверення рядка складеного з вхідних параметрів
