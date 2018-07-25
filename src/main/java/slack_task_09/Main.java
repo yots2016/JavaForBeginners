@@ -25,7 +25,7 @@ public class Main {
     }
 
     //Метод для прорахунку середньоарифметичного значення елементів масиву типу int
-    private static int getAverageArithmeticValue(int[] inputArray) {
+    private static long getAverageArithmeticValue(int[] inputArray) {
         int sum = 0;
 
         for (int anInputArray : inputArray) {
@@ -47,7 +47,7 @@ public class Main {
     }
 
     //Перегружений метод для прорахунку середньоарифметичного значення елементів масиву типу byte
-    private static int getAverageArithmeticValue(byte[] inputArray) {
+    private static long getAverageArithmeticValue(byte[] inputArray) {
         int sum = 0;
 
         for (byte anInputArray : inputArray) {
@@ -58,7 +58,7 @@ public class Main {
     }
 
     //Перегружений метод для прорахунку середньоарифметичного значення елементів масиву типу short
-    private static int getAverageArithmeticValue(short[] inputArray) {
+    private static long getAverageArithmeticValue(short[] inputArray) {
         int sum = 0;
 
         for (short anInputArray : inputArray) {
@@ -91,7 +91,7 @@ public class Main {
     }
 
     //Метод для прорахунку суми квадратів двох чисел типу int
-    private static int getSumOfSquaresOfTwoNumbers(int firstNumber, int secondNumber) {
+    private static long getSumOfSquaresOfTwoNumbers(int firstNumber, int secondNumber) {
         return firstNumber * firstNumber + secondNumber * secondNumber;
     }
 
