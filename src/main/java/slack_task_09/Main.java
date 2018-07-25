@@ -4,18 +4,18 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Main {
-    private static final Random RANDOM = new Random(10);
+    private static final Random RANDOM = new Random();
 
     public static void main(String[] args) {
-        System.out.println("AverageArithmetic = " + getAverageArithmeticValue(new double[]{1.3, .5, 89.000005, 12}));
+        System.out.println("AverageArithmetic = " + getAverage(new double[]{1.3, .5, 89.000005, 12}));
         System.out.println();
-        System.out.println("AverageArithmetic = " + getAverageArithmeticValue(new short[]{3, 5, 5, 12, 555}));
+        System.out.println("AverageArithmetic = " + getAverage(new short[]{3, 5, 5, 12, 555}));
         System.out.println();
-        System.out.println("AverageArithmetic = " + getAverageArithmeticValue(new long[]{3, 1000, 678678, 4654}));
+        System.out.println("AverageArithmetic = " + getAverage(new long[]{3, 1000, 678678, 4654}));
         System.out.println();
-        System.out.println("The sum of squares of two numbers = " + getSumOfSquaresOfTwoNumbers(12, 3));
+        System.out.println("The sum of squares of two numbers = " + getSumOfSquares(12, 3));
         System.out.println();
-        System.out.println("The sum of squares of two numbers = " + getSumOfSquaresOfTwoNumbers(54544f, 76f));
+        System.out.println("The sum of squares of two numbers = " + getSumOfSquares(54544f, 76f));
         System.out.println();
 
         int[] randomNumbersArray = new int[10];
@@ -25,7 +25,7 @@ public class Main {
     }
 
     //Метод для прорахунку середньоарифметичного значення елементів масиву типу int
-    private static long getAverageArithmeticValue(int[] inputArray) {
+    private static long getAverage(int[] inputArray) {
         int sum = 0;
 
         for (int anInputArray : inputArray) {
@@ -36,7 +36,7 @@ public class Main {
     }
 
     //Перегружений метод для прорахунку середньоарифметичного значення елементів масиву типу long
-    private static long getAverageArithmeticValue(long[] inputArray) {
+    private static long getAverage(long[] inputArray) {
         long sum = 0;
 
         for (long anInputArray : inputArray) {
@@ -47,7 +47,7 @@ public class Main {
     }
 
     //Перегружений метод для прорахунку середньоарифметичного значення елементів масиву типу byte
-    private static long getAverageArithmeticValue(byte[] inputArray) {
+    private static long getAverage(byte[] inputArray) {
         int sum = 0;
 
         for (byte anInputArray : inputArray) {
@@ -58,7 +58,7 @@ public class Main {
     }
 
     //Перегружений метод для прорахунку середньоарифметичного значення елементів масиву типу short
-    private static long getAverageArithmeticValue(short[] inputArray) {
+    private static long getAverage(short[] inputArray) {
         int sum = 0;
 
         for (short anInputArray : inputArray) {
@@ -69,7 +69,7 @@ public class Main {
     }
 
     //Метод для прорахунку середньоарифметичного значення елементів масиву типу double
-    private static double getAverageArithmeticValue(double[] inputArray) {
+    private static double getAverage(double[] inputArray) {
         double sum = 0;
 
         for (double anInputArray : inputArray) {
@@ -80,7 +80,7 @@ public class Main {
     }
 
     //Перегружений метод для прорахунку середньоарифметичного значення елементів масиву типу float
-    private static double getAverageArithmeticValue(float[] inputArray) {
+    private static double getAverage(float[] inputArray) {
         double sum = 0;
 
         for (float anInputArray : inputArray) {
@@ -91,12 +91,12 @@ public class Main {
     }
 
     //Метод для прорахунку суми квадратів двох чисел типу int
-    private static long getSumOfSquaresOfTwoNumbers(int firstNumber, int secondNumber) {
+    private static long getSumOfSquares(int firstNumber, int secondNumber) {
         return firstNumber * firstNumber + secondNumber * secondNumber;
     }
 
     //Перегружений метод для прорахунку суми квадратів двох чисел типу float
-    private static double getSumOfSquaresOfTwoNumbers(float firstNumber, float secondNumber) {
+    private static double getSumOfSquares(float firstNumber, float secondNumber) {
         return firstNumber * firstNumber + secondNumber * secondNumber;
     }
 
@@ -128,6 +128,8 @@ public class Main {
             }
         } while (hasSameValue);
 
-        inputArray[--arrayLength] = random; //Внесення нового рандомного значення в масив
+        Arrays.fill(inputArray, --arrayLength, ++arrayLength, random);//Внесення нового рандомного значення в масив
+
+//        inputArray[--arrayLength] = random; //Внесення нового рандомного значення в масив
     }
 }
