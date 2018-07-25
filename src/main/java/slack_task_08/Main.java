@@ -38,8 +38,8 @@ public class Main {
          складуться у порядку від останнього витягнутого до першоого. Бо ця дія робиться не рекурсивно.
          Рекурсивно викликається лише метод з параметром без першого символу.
         */
-        if (str != null) {
-            return str.isEmpty() ? "" : reverseString(str.substring(1)) + str.charAt(0);
+        if (str != null && !str.isEmpty()) {
+            return reverseString(str.substring(1)) + str.charAt(0);
         } else {
             return "";
         }

@@ -82,4 +82,6 @@ public class Main {
     private static double getSumOfSquaresOfTwoNumbers(float firstNumber, float secondNumber) {
         return firstNumber * firstNumber + secondNumber * secondNumber;
     }
+
+
 }
