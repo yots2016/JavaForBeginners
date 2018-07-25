@@ -1,36 +1,37 @@
 package slack_task_08;
 
 import java.util.Arrays;
+import java.util.Formatter;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(functionThatReturnsString("strinf", 17, 145.132554654));
+        System.out.println(getString("strinf", 17, 145.132554654));
         System.out.println();
 
-        System.out.println(Arrays.toString(getReversedArray(new int[] {1, 48, 78, 25, 13})));
+        int[] numbersArray = new int[] {1, 48, 78, 25, 13};
+        reverseArray(numbersArray);
+        System.out.println(Arrays.toString(numbersArray));
         System.out.println();
 
-        System.out.println(reverseString("Hello World! Hello Java! :-)"));
+        System.out.println(reverseString("Hello World! Hello Java! :-)", new Formatter()));
     }
 
     //Метод поверення рядка складеного з вхідних параметрів
-    private static String functionThatReturnsString(String characterString, int number, double numberWithFloatingPoint) {
+    private static String getString(String characterString, int number, double numberWithFloatingPoint) {
         return ("S = " + characterString + " + " + number + " + " + numberWithFloatingPoint + ".");
     }
 
     //Метод перевертання масиву
-    private static int[] getReversedArray(int[] sourceArray) {
+    private static void reverseArray(int[] sourceArray) {
         for (int i = 0; i < sourceArray.length / 2; i++) {
             int tmp = sourceArray[i];
             sourceArray[i] = sourceArray[sourceArray.length - i - 1];
             sourceArray[sourceArray.length - i - 1] = tmp;
         }
-
-        return sourceArray;
     }
 
     //Метод перевертання рядка
-    private static String reverseString(String str) {
+    private static String reverseString(String inputString, Formatter formatter) {
         /*
         У рекурсивний метод постійно потраплятиме рядок без першого символу, а перед цим
          цей же перший символ буде витягуватися кудись у тимчасове місце зберігання(зараз це не важливо, куди саме).
@@ -43,8 +44,9 @@ public class Main {
          Щоб було простіше уявіть собі for з downto який виконує певний метод, а його параметром є індекс цього for`у.
          Може трішки примітивно. Мені так було простіше зрозуміти ;-)
         */
-        if (str != null && !str.isEmpty()) {
-            return reverseString(str.substring(1)) + str.charAt(0);
+        if (inputString!= null && !(inputString.isEmpty())) {
+            reverseString(inputString.substring(1), formatter);
+            return formatter.format("%s", inputString.charAt(0)).toString();
         } else {
             return "";
         }
