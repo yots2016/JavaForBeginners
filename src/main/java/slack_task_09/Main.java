@@ -128,6 +128,6 @@ public class Main {
             }
         } while (hasSameValue);
 
-        Arrays.fill(inputArray, --arrayLength, ++arrayLength, random);//Внесення нового рандомного значення в масив
+        inputArray[--arrayLength] = random;//Внесення нового рандомного значення в масив
     }
 }
