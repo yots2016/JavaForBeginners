@@ -1,13 +1,13 @@
 package slack_task_10;
 
-class Student {
+public class Student {
 
     //Поля класу з доступом лише для членів класу
     private final String name;
     private final String course;
 
     //Конструктор класу, який при створенні об’єкту ініалізує його поля значеннями, що передаються в цей конструктор
-    Student(String name, String course) {
+    public Student(String name, String course) {
         this.name = name;
         this.course = course;
     }
@@ -18,12 +18,12 @@ class Student {
     }
 
     //Геттер для поля name
-    String getName() {
+    public String getName() {
         return name;
     }
 
     //Геттер для поля course
-    String getCourse() {
+    public String getCourse() {
         return course;
     }
 }
