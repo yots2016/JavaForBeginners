@@ -10,6 +10,11 @@ public class Student extends Person{
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return name + ", " + super.getGender() + ", " + super.getAge();
+    }
+
     //Гетер для поля name
     public String getName() {
         return name;
