@@ -2,29 +2,34 @@ package slack_task_11;
 
 public class SomeClass { //Клас, назва якого не прив’язана до якого-небудь контексту
     //Поля класу, назва яких не прив’язана до якого-небудь контексту
-    private int firstField;
-    private int secondField;
+    private final int firstField;
+    private final int secondField;
 
     //Конструктор класу з двома вхідними параметрами
-    SomeClass(int firstField, int secondField) {
+    public SomeClass(int firstField, int secondField) {
         this.firstField = firstField;
         this.secondField = secondField;
     }
 
     //Конструктор класу, що по зпмовчуванню ініціалізує поля заданими значення
-    SomeClass() {
+    public SomeClass() {
         this.firstField = 10;
         this.secondField = 11;
 
     }
 
+    @Override
+    public String toString() {
+        return firstField + ", " + secondField;
+    }
+
     //Гетер для поля firstField
-    int getFirstField() {
+    public int getFirstField() {
         return firstField;
     }
 
     //Гетер для поля secondField
-    int getSecondField() {
+    public int getSecondField() {
         return secondField;
     }
 
