@@ -23,6 +23,6 @@ public abstract class Animal {
 
     @Override
     public String toString() {
-        return "Animal eats " + food + " and dwelling in " + location;
+        return kindOfAnimal + " eats " + food + " and dwelling in " + location;
     }
 }
