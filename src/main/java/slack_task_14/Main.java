@@ -7,14 +7,16 @@ public class Main {
     public static void main(String[] args) {
         List<Animal> animals = new ArrayList<>();
 
-        animals.add(new Dog("Bones", "Ukraine", "Low"));
-        animals.add(new Cat("Mice", "USA", "High"));
-        animals.add(new Horse("Grass", "Japan", "Middle"));
+        animals.add(new Dog("bones", "Ukraine", "Low"));
+        animals.add(new Cat("mice", "USA", "High"));
+        animals.add(new Horse("grass", "Japan", "Middle"));
 
         Veterinarian veterinarian = new Veterinarian();
 
         for (Animal animal : animals) {
             veterinarian.treatAnimal(animal);
+            System.out.println(animal);
+            System.out.println();
         }
     }
 }
