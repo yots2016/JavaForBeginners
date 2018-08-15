@@ -17,7 +17,7 @@ public class Main {
         Veterinarian veterinarian = new Veterinarian();
 
         // Перебір елементів ArrayList
-        for (Animal animal : animals) {
+        for (Animal animal : animals) {// Цикл for each
             // Передавання методу treatAnimal об’єкта типу Veterinarian посилання на об’єкт типу Animal
             veterinarian.treatAnimal(animal);
             System.out.println(animal);
