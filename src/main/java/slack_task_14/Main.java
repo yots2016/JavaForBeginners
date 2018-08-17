@@ -20,7 +20,6 @@ public class Main {
         for (Animal animal : animals) {// Цикл for each
             // Передавання методу treatAnimal об’єкта типу Veterinarian посилання на об’єкт типу Animal
             veterinarian.treatAnimal(animal);
-            System.out.println(animal);
             System.out.println();
         }
     }

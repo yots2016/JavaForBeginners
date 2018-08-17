@@ -4,12 +4,10 @@ package slack_task_14;
 public abstract class Animal {
     private final String food;
     private final String location;
-    private final String kindOfAnimal;
 
-    public Animal(String food, String location, String kindOfAnimal) {
+    public Animal(String food, String location) {
         this.food = food;
         this.location = location;
-        this.kindOfAnimal = kindOfAnimal;
     }
 
 
@@ -25,13 +23,8 @@ public abstract class Animal {
     // в неабстрактних(звичайних) класах нащадках
     public abstract void sleep();
 
-    // Геттер поля kindOfAnimal
-    public String getKindOfAnimal() {
-        return kindOfAnimal;
-    }
-
     @Override
     public String toString() {
-        return kindOfAnimal + " eats " + food + " and dwelling in " + location;
+        return "Eats " + food + " and dwelling in " + location;
     }
 }

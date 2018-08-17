@@ -8,7 +8,7 @@ public class Cat extends Animal {
     //Конструктор класу
     public Cat(String food, String location, String miceFishing) {
         // Виклик конструктора батьківського класу
-        super(food, location, "Cat");
+        super(food, location);
         this.miceFishing = miceFishing;
     }
 

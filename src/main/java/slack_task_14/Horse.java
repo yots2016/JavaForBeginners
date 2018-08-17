@@ -6,7 +6,7 @@ public class Horse extends Animal {
     //Конструктор класу
     public Horse(String food, String location, String endurance) {
         // Виклик конструктора батьківського класу
-        super(food, location, "Horse");
+        super(food, location);
         this.endurance = endurance;
     }
 

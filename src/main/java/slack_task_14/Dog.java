@@ -6,7 +6,7 @@ public class Dog extends Animal {
     //Конструктор класу
     public Dog(String food, String location, String protectionOfHolder) {
         // Виклик конструктора батьківського класу
-        super(food, location, "Dog");
+        super(food, location);
         this.protectionOfHolder = protectionOfHolder;
     }
 
