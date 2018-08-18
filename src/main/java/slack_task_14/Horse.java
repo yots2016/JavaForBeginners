@@ -28,6 +28,14 @@ public class Horse extends Animal {
         System.out.println("Horse sleeps");
     }
 
+    // Перевизначений метод батьківського класу
+    @Override
+    public String toString() {
+        return "Horse{" +
+                "endurance='" + endurance + '\'' +
+                '}';
+    }
+
     // Геттер для поля endurance
     public String getEndurance() {
         return endurance;

@@ -30,8 +30,17 @@ public class Cat extends Animal {
         System.out.println("Cat sleeps");
     }
 
+    // Перевизначений метод батьківського класу
+    @Override
+    public String toString() {
+        return "Cat{" +
+                "miceFishing='" + miceFishing + '\'' +
+                '}';
+    }
+
     // Геттер для поля miceFishing
     public String getMiceFishing() {
         return miceFishing;
     }
+
 }

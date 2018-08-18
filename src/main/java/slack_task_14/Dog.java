@@ -28,6 +28,14 @@ public class Dog extends Animal {
         System.out.println("Dog sleeps");
     }
 
+    // Перевизначений метод батьківського класу
+    @Override
+    public String toString() {
+        return "Dog{" +
+                "protectionOfHolder='" + protectionOfHolder + '\'' +
+                '}';
+    }
+
     // Геттер для поля protectionOfHolder
     public String getProtectionOfHolder() {
         return protectionOfHolder;

@@ -23,8 +23,11 @@ public abstract class Animal {
     // в неабстрактних(звичайних) класах нащадках
     public abstract void sleep();
 
-    @Override
-    public String toString() {
-        return "Eats " + food + " and dwelling in " + location;
+    public String getFood() {
+        return food;
+    }
+
+    public String getLocation() {
+        return location;
     }
 }
