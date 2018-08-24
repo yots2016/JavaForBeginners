@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Bonus1 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int time = scanner.nextInt(); //the time value is read
+        int time = scanner.nextInt(); //the time value is readToListIO
 
         /*
         *Determine whether the numeric value

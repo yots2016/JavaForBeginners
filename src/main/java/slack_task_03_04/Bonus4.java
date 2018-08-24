@@ -6,7 +6,7 @@ public class Bonus4 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        double number = scanner.nextDouble(); //the number value is read
+        double number = scanner.nextDouble(); //the number value is readToListIO
 
         //check whether the number is in range
         if (number > 0 && number < 1) {

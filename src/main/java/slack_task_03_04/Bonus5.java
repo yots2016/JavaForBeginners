@@ -6,8 +6,8 @@ public class Bonus5 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        int firstNumber = scanner.nextInt(); //the number value is read
-        int secondNumber = scanner.nextInt(); //the number value is read
+        int firstNumber = scanner.nextInt(); //the number value is readToListIO
+        int secondNumber = scanner.nextInt(); //the number value is readToListIO
 
         // check which number is more
         if (firstNumber > secondNumber) {

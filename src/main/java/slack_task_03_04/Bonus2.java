@@ -9,7 +9,7 @@ public class Bonus2 {
         Scanner scanner = new Scanner(System.in);
 
         for (int i = 0; i < 3; i++) {
-            integers.add(scanner.nextInt()); //the number values is read
+            integers.add(scanner.nextInt()); //the number values is readToListIO
         }
 
         //definition of maximum and minimum values
