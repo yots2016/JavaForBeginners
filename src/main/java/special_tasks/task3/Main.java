@@ -16,11 +16,11 @@ public class Main {
 
 
     public static void main(String[] args) throws IOException {
-        workWithFileIO(fileNameIO, text);
-        workWithFileNIO(fileNameNIO, text);
+        workIOWithFile(fileNameIO, text);
+        workNIOWithFile(fileNameNIO, text);
     }
 
-    public static void workWithFileIO(String fileName, String text) throws IOException {
+    public static void workIOWithFile(String fileName, String text) throws IOException {
         List<String> stringsList = new ArrayList<>();
         writeIOToFile(fileName, text);
         readToListIO(fileName, stringsList);
@@ -62,7 +62,7 @@ public class Main {
         }
     }
 
-    public static void workWithFileNIO(String fileName, String text) {
+    public static void workNIOWithFile(String fileName, String text) throws FileNotFoundException {
         List<String> stringsList = new ArrayList<>();
         writeNIOToFile(fileName, text);
         readNIOToList(fileName, stringsList);
@@ -80,8 +80,12 @@ public class Main {
         }
     }
 
-    private static void readNIOToList(String fileName, List<String> stringsList) {
+    private static void readNIOToList(String fileName, List<String> stringsList) throws FileNotFoundException {
         Path path = Paths.get(fileName);
+
+        if (!Files.exists(path)) {
+            throw new FileNotFoundException(path.toString());
+        }
 
         try (BufferedReader reader = Files.newBufferedReader(path)) {
             String currentLine;
