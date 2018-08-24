@@ -23,19 +23,19 @@ public class Main {
     }
 
     public static LocalDate getPrevDayDate(LocalDate parsedDate, DayOfWeek prevDayOfWeek) {
-        int countDays = 0;
+        int daysCounter = 0;
         DayOfWeek dayOfWeek = parsedDate.getDayOfWeek();
 
         if (dayOfWeek.getValue() == prevDayOfWeek.getValue()) {
-            countDays = 7;
+            daysCounter = 7;
         } else {
             while (dayOfWeek.getValue() != prevDayOfWeek.getValue()) {
                 dayOfWeek = dayOfWeek.minus(1);
-                countDays++;
+                daysCounter++;
             }
         }
 
-        return parsedDate.minusDays(countDays);
+        return parsedDate.minusDays(daysCounter);
     }
 
     public static LocalDate parseDate(String date) {
