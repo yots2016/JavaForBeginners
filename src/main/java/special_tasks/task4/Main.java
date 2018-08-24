@@ -14,7 +14,7 @@ public class Main {
         System.out.println(parsedDate);
         System.out.println(parsedDate.getDayOfWeek());
 
-        parsedDate = getPrevTueDate(parsedDate);
+        parsedDate = getPrevDayDate(parsedDate, DayOfWeek.TUESDAY);
 
         System.out.println();
         System.out.println(parsedDate);
@@ -22,14 +22,14 @@ public class Main {
 
     }
 
-    public static LocalDate getPrevTueDate(LocalDate parsedDate) {
+    public static LocalDate getPrevDayDate(LocalDate parsedDate, DayOfWeek prevDayOfWeek) {
         int countDays = 0;
         DayOfWeek dayOfWeek = parsedDate.getDayOfWeek();
 
-        if (dayOfWeek.getValue() == 2) {
+        if (dayOfWeek.getValue() == prevDayOfWeek.getValue()) {
             countDays = 7;
         } else {
-            while (dayOfWeek.getValue() != 2) {
+            while (dayOfWeek.getValue() != prevDayOfWeek.getValue()) {
                 dayOfWeek = dayOfWeek.minus(1);
                 countDays++;
             }
