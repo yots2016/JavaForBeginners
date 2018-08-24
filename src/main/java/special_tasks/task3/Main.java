@@ -2,7 +2,6 @@ package special_tasks.task3;
 
 
 import java.io.*;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -23,13 +22,13 @@ public class Main {
 
     public static void workWithFileIO(String fileName, String text) throws IOException {
         List<String> stringsList = new ArrayList<>();
-        writeToFileIO(fileName, text);
+        writeIOToFile(fileName, text);
         readToListIO(fileName, stringsList);
 
         System.out.println(stringsList);
     }
 
-    public static void writeToFileIO(String fileName, String text) {
+    public static void writeIOToFile(String fileName, String text) {
         File file = new File(fileName);
 
         try {
@@ -65,13 +64,13 @@ public class Main {
 
     public static void workWithFileNIO(String fileName, String text) {
         List<String> stringsList = new ArrayList<>();
-        writeToFileNIO(fileName, text);
-        readToListNIO(fileName, stringsList);
+        writeNIOToFile(fileName, text);
+        readNIOToList(fileName, stringsList);
 
         System.out.println(stringsList);
     }
 
-    private static void writeToFileNIO(String fileName, String text) {
+    private static void writeNIOToFile(String fileName, String text) {
         Path path = Paths.get(fileName);
 
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
@@ -81,7 +80,7 @@ public class Main {
         }
     }
 
-    private static void readToListNIO(String fileName, List<String> stringsList) {
+    private static void readNIOToList(String fileName, List<String> stringsList) {
         Path path = Paths.get(fileName);
 
         try (BufferedReader reader = Files.newBufferedReader(path)) {
