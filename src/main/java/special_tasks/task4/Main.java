@@ -3,6 +3,8 @@ package special_tasks.task4;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjuster;
+import java.time.temporal.TemporalAdjusters;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,28 +16,10 @@ public class Main {
         System.out.println(parsedDate);
         System.out.println(parsedDate.getDayOfWeek());
 
-        parsedDate = getPrevDayDate(parsedDate, DayOfWeek.TUESDAY);
-
         System.out.println();
-        System.out.println(parsedDate);
+        System.out.println(parsedDate.with(TemporalAdjusters.previous(DayOfWeek.TUESDAY)));
         System.out.println(parsedDate.getDayOfWeek());
 
-    }
-
-    public static LocalDate getPrevDayDate(LocalDate parsedDate, DayOfWeek prevDayOfWeek) {
-        int daysCounter = 0;
-        DayOfWeek dayOfWeek = parsedDate.getDayOfWeek();
-
-        if (dayOfWeek.getValue() == prevDayOfWeek.getValue()) {
-            daysCounter = 7;
-        } else {
-            while (dayOfWeek.getValue() != prevDayOfWeek.getValue()) {
-                dayOfWeek = dayOfWeek.minus(1);
-                daysCounter++;
-            }
-        }
-
-        return parsedDate.minusDays(daysCounter);
     }
 
     public static LocalDate parseDate(String date) {
