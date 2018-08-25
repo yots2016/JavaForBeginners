@@ -10,42 +10,42 @@ import java.util.List;
 
 public class Main {
 
-    private static String text = "This new text \nThis new text2\nThis new text3\nThis new text4\n";
-    private static String fileNameIO = "src/main/java/special_tasks/task3/textIO.txt";
-    private static String fileNameNIO = "src/main/java/special_tasks/task3/textNIO.txt";
-
 
     public static void main(String[] args) throws IOException {
-        workIOWithFile(fileNameIO, text);
-        workNIOWithFile(fileNameNIO, text);
-    }
-
-    public static void workIOWithFile(String fileName, String text) throws IOException {
         List<String> stringsList = new ArrayList<>();
-        writeIOToFile(fileName, text);
-        readToListIO(fileName, stringsList);
+        stringsList.add("This new text \n");
+        stringsList.add("This new text2 \n");
+        stringsList.add("This new text3 \n");
+        stringsList.add("This new text4 \n");
 
-        System.out.println(stringsList);
+        String fileNameIO = "src/main/java/special_tasks/task3/textIO.txt";
+        String fileNameNIO = "src/main/java/special_tasks/task3/textNIO.txt";
+
+        workIOWithFile(fileNameIO, stringsList);
+        workNIOWithFile(fileNameNIO, stringsList);
     }
 
-    public static void writeIOToFile(String fileName, String text) {
+    public static void workIOWithFile(String fileName, List<String> stringsList) throws IOException {
+        writeIOToFile(fileName, stringsList);
+        System.out.println(readIOToListIO(fileName));
+    }
+
+    public static void writeIOToFile(String fileName, List<String> stringsList) throws IOException {
         File file = new File(fileName);
 
-        try {
             if (!file.exists()) {
                 file.createNewFile();
             }
 
             try (PrintWriter printWriter = new PrintWriter(file.getAbsoluteFile())) {
-                printWriter.print(text);
+                stringsList.forEach(printWriter::print);
             }
-        } catch (IOException e) {
-            throw new RuntimeException();
-        }
     }
 
-    public static void readToListIO(String fileName, List<String> stringsList) throws IOException {
+    public static List<String> readIOToListIO(String fileName) throws IOException {
         File file = new File(fileName);
+        List<String> stringsList = new ArrayList<>();
+
 
         if (!file.exists()) {
             throw new FileNotFoundException(file.getName());
@@ -60,28 +60,32 @@ public class Main {
                 sb.setLength(0);
             }
         }
+
+        return stringsList;
     }
 
-    public static void workNIOWithFile(String fileName, String text) throws FileNotFoundException {
-        List<String> stringsList = new ArrayList<>();
-        writeNIOToFile(fileName, text);
-        readNIOToList(fileName, stringsList);
-
-        System.out.println(stringsList);
+    public static void workNIOWithFile(String fileName, List<String> stringsList) throws IOException {
+        writeNIOToFile(fileName, stringsList);
+        System.out.println(readNIOToList(fileName));
     }
 
-    private static void writeNIOToFile(String fileName, String text) {
+    private static void writeNIOToFile(String fileName, List<String> stringsList) throws IOException {
         Path path = Paths.get(fileName);
 
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
-            writer.write(text);
-        } catch (IOException e) {
-            e.printStackTrace();
+            stringsList.forEach(str -> {
+                try {
+                    writer.write(str);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
         }
     }
 
-    private static void readNIOToList(String fileName, List<String> stringsList) throws FileNotFoundException {
+    private static List<String> readNIOToList(String fileName) throws IOException {
         Path path = Paths.get(fileName);
+        List<String> stringsList = new ArrayList<>();
 
         if (!Files.exists(path)) {
             throw new FileNotFoundException(path.toString());
@@ -96,8 +100,8 @@ public class Main {
                 stringsList.add(sb.append(currentLine).reverse().toString());
                 sb.setLength(0);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+
+        return stringsList;
     }
 }
