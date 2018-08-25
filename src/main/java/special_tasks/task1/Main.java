@@ -9,24 +9,17 @@ public class Main {
 
         String inputString = "dfdsfdksnfdgnfsdkj;gnkjsdfgsdfkgnksdfg";
 
-        System.out.println(countLettersByCollections(inputString).toString());
-        System.out.println(countLettersByStream(inputString).toString());
+        System.out.println(countLettersByCollections(inputString));
+        System.out.println(countLettersByStream(inputString));
 
     }
 
     public static Map<Character, Integer> countLettersByCollections(String inputString) {
         Map<Character, Integer> charactersMap = new HashMap<>();
 
-        for (int i = 0; i < inputString.length(); i++) {
-            Integer number = charactersMap.get(inputString.charAt(i));
-
-            if (number == null) {
-                charactersMap.put(inputString.charAt(i), 1);
-            } else {
-                charactersMap.put(inputString.charAt(i), ++number);
-            }
+        for (char element : inputString.toCharArray()){
+            charactersMap.merge(element, 1, (a, b) -> a + b);
         }
-
         return charactersMap;
     }
 
