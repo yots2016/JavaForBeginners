@@ -18,7 +18,7 @@ public class Main {
         Map<Character, Integer> charactersMap = new HashMap<>();
 
         for (char element : inputString.toCharArray()){
-            charactersMap.merge(element, 1, (a, b) -> a + b);
+            charactersMap.merge(element, 1, Integer::sum);
         }
         return charactersMap;
     }
