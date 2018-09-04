@@ -1,4 +1,4 @@
-package special_tasks.task2;
+package special_tasks1.task2;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,4 +1,4 @@
-package special_tasks.task3;
+package special_tasks1.task3;
 
 
 import java.io.*;
@@ -18,8 +18,8 @@ public class Main {
         stringsList.add("This new text3 \n");
         stringsList.add("This new text4 \n");
 
-        String fileNameIO = "src/main/java/special_tasks/task3/textIO.txt";
-        String fileNameNIO = "src/main/java/special_tasks/task3/textNIO.txt";
+        String fileNameIO = "src/main/java/special_tasks1/task3/textIO.txt";
+        String fileNameNIO = "src/main/java/special_tasks1/task3/textNIO.txt";
 
         workIOWithFile(fileNameIO, stringsList);
         workNIOWithFile(fileNameNIO, stringsList);

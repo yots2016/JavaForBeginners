@@ -1,4 +1,4 @@
-package special_tasks.task4;
+package special_tasks1.task4;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
