@@ -69,8 +69,7 @@ public class Main {
             }
         }
 
-        int sum;
-        sum = executorService.invokeAll(callables).stream()
+        int sum = executorService.invokeAll(callables).stream()
                 .map(integerFuture -> {
                     try {
                         return integerFuture.get();
