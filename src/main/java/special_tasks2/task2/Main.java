@@ -3,7 +3,6 @@ package special_tasks2.task2;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -19,7 +18,7 @@ public class Main {
         }
 
         @Override
-        public Integer call() throws Exception {
+        public Integer call() {
             for (int i = firstIndex; i <= lastIndex; i++) {
                 sum += numbers[i];
             }
@@ -28,15 +27,13 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) throws ExecutionException, InterruptedException {
-        System.out.println(sum(6));
+    public static void main(String[] args) throws InterruptedException {
+        System.out.println(sum(181));
     }
 
-    public static long sum(int inputNumber) throws ExecutionException, InterruptedException {
-        int sum;
-        int threadsNumber = Runtime.getRuntime().availableProcessors();
-
+    public static long sum(int inputNumber) throws InterruptedException {
         Integer[] integers;
+
         if (inputNumber < 0) {
             integers = new Integer[1];
         } else {
@@ -49,6 +46,7 @@ public class Main {
             integers[i] = i;
         }
 
+        int threadsNumber = Runtime.getRuntime().availableProcessors();
         ExecutorService executorService = Executors.newFixedThreadPool(threadsNumber);
         List<Callable<Integer>> callables = new ArrayList<>();
 
@@ -58,18 +56,20 @@ public class Main {
                 callables.add(new MyCallable(firstIndex, lastIndex, integers));
             }
 
-        } else if (integersLength % threadsNumber != 0) {
+        } else {
             int step = integersLength / threadsNumber;
             int remainder = integersLength % threadsNumber;
 
             callables.add(new MyCallable(0, remainder - 1, integers));
 
             if (step != 0) {
-                for (int i = 0, firstIndex = remainder, lastIndex = step; i < threadsNumber; i++, firstIndex += step, lastIndex += step) {
+                for (int i = 0, firstIndex = remainder, lastIndex = (step + remainder - 1); i < threadsNumber; i++, firstIndex += step, lastIndex += step) {
                     callables.add(new MyCallable(firstIndex, lastIndex, integers));
                 }
             }
         }
+
+        int sum;
         sum = executorService.invokeAll(callables).stream()
                 .map(integerFuture -> {
                     try {
