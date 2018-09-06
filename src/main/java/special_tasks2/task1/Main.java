@@ -1,9 +1,10 @@
 package special_tasks2.task1;
 
 import com.sun.istack.internal.NotNull;
-import sun.plugin.javascript.navig.LinkArray;
 
 import java.util.*;
+import java.util.function.IntPredicate;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -17,26 +18,20 @@ public class Main {
         System.out.println(min(strings));
         System.out.println(max(strings));
         System.out.println(filterParityOdd(strings));
+
     }
 
     public static List<String> min(@NotNull List<String> strings) {
-        int min = strings.stream()
-                        .mapToInt(Integer::parseInt)
-                        .min()
-                        .getAsInt();
+        String  min = Collections.min(strings);
 
         List<String> stringList = new ArrayList<>(strings);
-        stringList.remove(String.valueOf(min));
-        stringList.add(0, String.valueOf(min));
+        Collections.swap(stringList, 0, stringList.indexOf(min));
 
         return stringList;
     }
 
     public static List<String> max(@NotNull List<String> strings) {
-        int max = strings.stream()
-                        .mapToInt(Integer::parseInt)
-                        .max()
-                        .getAsInt();
+        int max = Integer.parseInt(Collections.max(strings));
 
         int indexOfMax = strings.indexOf(String.valueOf(max));
 
@@ -44,7 +39,7 @@ public class Main {
         List<String> afterMax = strings.subList(indexOfMax + 1, strings.size());
 
         beforeMax.sort(Comparator.comparingInt(Integer::parseInt));
-        afterMax.sort((a, b) -> Integer.parseInt(b) - Integer.parseInt(a));
+        afterMax.sort((a, b) -> Integer.compare(Integer.parseInt(b), Integer.parseInt(a)));
 
         List<String> result = new ArrayList<>(beforeMax.size() + afterMax.size() + 1);
         result.addAll(beforeMax);
@@ -55,28 +50,26 @@ public class Main {
     }
 
     public static List<String> filterParityOdd(@NotNull List<String> strings) {
-        Supplier<Stream<String>> streamSupplier = strings::stream;
-
         List<String> result;
 
-        int sum = streamSupplier.get()
+        int sum = strings.stream()
                 .mapToInt(Integer::parseInt)
                 .sum();
 
         if (sum % 2 != 0) {
-            result = streamSupplier.get()
-                                .mapToInt(Integer::parseInt)
-                                .filter(n -> n % 2 == 0)
-                                .mapToObj(String::valueOf)
-                                .collect(Collectors.toList());
+            result = getStrings(strings, n -> n % 2 == 0);
         } else {
-            result = streamSupplier.get()
-                    .mapToInt(Integer::parseInt)
-                    .filter(n -> n % 2 != 0)
-                    .mapToObj(String::valueOf)
-                    .collect(Collectors.toList());
+            result = getStrings(strings, n -> n % 2 != 0);
         }
 
         return result;
+    }
+
+    public static List<String> getStrings(@NotNull List<String> strings, IntPredicate intPredicate) {
+        return strings.stream()
+                            .mapToInt(Integer::parseInt)
+                            .filter(intPredicate)
+                            .mapToObj(String::valueOf)
+                            .collect(Collectors.toList());
     }
 }
