@@ -32,9 +32,9 @@ public class Main {
     }
 
     public static List<String> max(@NotNull List<String> strings) {
-        int max = Integer.parseInt(Collections.max(strings, Comparator.comparingInt(Integer::parseInt)));
+        String  max = Collections.max(strings, Comparator.comparingInt(Integer::parseInt));
 
-        int indexOfMax = strings.indexOf(String.valueOf(max));
+        int indexOfMax = strings.indexOf(max);
 
         List<String> beforeMax = strings.subList(0, indexOfMax);
         List<String> afterMax = strings.subList(indexOfMax + 1, strings.size());
@@ -44,7 +44,7 @@ public class Main {
 
         List<String> result = new ArrayList<>(beforeMax.size() + afterMax.size() + 1);
         result.addAll(beforeMax);
-        result.add(String.valueOf(max));
+        result.add(max);
         result.addAll(afterMax);
 
         return result;
