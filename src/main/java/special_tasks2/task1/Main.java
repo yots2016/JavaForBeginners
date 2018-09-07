@@ -57,17 +57,13 @@ public class Main {
 
         Predicate<String> predicate = s -> (Integer.parseInt(s) % 2) == 0;
 
-        Map<Boolean, List<String>> integerListMap = getStrings(strings, predicate);
+        Map<Boolean, List<String>> integerListMap = strings.stream()
+                .collect(Collectors.partitioningBy(predicate));
 
         if (sum != 0) {
             return integerListMap.get(false);
         } else {
             return integerListMap.get(true);
         }
-    }
-
-    public static Map<Boolean, List<String>> getStrings(@NotNull List<String> strings, Predicate<String> predicate) {
-        return strings.stream()
-                .collect(Collectors.partitioningBy(predicate));
     }
 }
