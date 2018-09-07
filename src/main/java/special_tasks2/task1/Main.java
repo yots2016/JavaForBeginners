@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Main {
-    static enum Parity {
-        PARITY(true),
+    enum Parity {
+        EVEN(true),
         ODD(false);
 
         private boolean parity;
@@ -18,7 +18,7 @@ public class Main {
             this.parity = parity;
         }
 
-        public boolean isParity() {
+        public boolean isPairNumbers() {
             return parity;
         }
     }
@@ -72,9 +72,9 @@ public class Main {
                 .sum();
 
         if (sum % 2 != 0) {
-            return map.get(Parity.ODD.isParity());
+            return map.get(Parity.ODD.isPairNumbers());
         } else {
-            return map.get(Parity.PARITY.isParity());
+            return map.get(Parity.EVEN.isPairNumbers());
         }
     }
 }
