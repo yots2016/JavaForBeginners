@@ -54,13 +54,16 @@ public class Main {
                 .mapToInt(Integer::parseInt)
                 .sum();
 
+
         Predicate<String> predicate = s -> (Integer.parseInt(s) % 2) == 0;
 
         Map<Boolean, List<String>> integerListMap = getStrings(strings, predicate);
 
-        System.out.println(integerListMap);
-
-        return null;
+        if (sum != 0) {
+            return integerListMap.get(false);
+        } else {
+            return integerListMap.get(true);
+        }
     }
 
     public static Map<Boolean, List<String>> getStrings(@NotNull List<String> strings, Predicate<String> predicate) {
