@@ -50,15 +50,14 @@ public class Main {
     }
 
     public static List<String> filterParityOdd(@NotNull List<String> strings) {
-        int sum = strings.stream()
-                .mapToInt(Integer::parseInt)
-                .sum();
-
-
         Predicate<String> predicate = s -> (Integer.parseInt(s) % 2) == 0;
 
         Map<Boolean, List<String>> integerListMap = strings.stream()
                 .collect(Collectors.partitioningBy(predicate));
+
+        int sum = strings.stream()
+                .mapToInt(Integer::parseInt)
+                .sum();
 
         if (sum != 0) {
             return integerListMap.get(false);
