@@ -18,7 +18,7 @@ public class Main {
             this.parity = parity;
         }
 
-        public boolean isPairNumbers() {
+        public boolean isPair() {
             return parity;
         }
     }
@@ -72,9 +72,9 @@ public class Main {
                 .sum();
 
         if (sum % 2 != 0) {
-            return map.get(Parity.ODD.isPairNumbers());
+            return map.get(Parity.ODD.isPair());
         } else {
-            return map.get(Parity.EVEN.isPairNumbers());
+            return map.get(Parity.EVEN.isPair());
         }
     }
 }
