@@ -3,14 +3,26 @@ package special_tasks2.task1;
 import com.sun.istack.internal.NotNull;
 
 import java.util.*;
-import java.util.function.IntPredicate;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Main {
+    static enum Parity {
+        PARITY(true),
+        ODD(false);
+
+        private boolean parity;
+
+        Parity(boolean parity) {
+            this.parity = parity;
+        }
+
+        public boolean isParity() {
+            return parity;
+        }
+    }
+
     public static void main(String[] args) {
         List<String> strings = IntStream.rangeClosed(1, 100).mapToObj(String::valueOf).collect(Collectors.toList());
         Collections.shuffle(strings);
@@ -50,7 +62,7 @@ public class Main {
     }
 
     public static List<String> filterParityOdd(@NotNull List<String> strings) {
-        Predicate<String> predicate = s -> (Integer.parseInt(s) % 2) == 0;
+        Predicate<String> predicate = s -> (Integer.parseInt(s) % 2) != 0;
 
         Map<Boolean, List<String>> map = strings.stream()
                 .collect(Collectors.partitioningBy(predicate));
@@ -59,10 +71,10 @@ public class Main {
                 .mapToInt(Integer::parseInt)
                 .sum();
 
-        if (sum != 0) {
-            return map.get(false);
+        if (sum % 2 != 0) {
+            return map.get(Parity.ODD.isParity());
         } else {
-            return map.get(true);
+            return map.get(Parity.PARITY.isParity());
         }
     }
 }
