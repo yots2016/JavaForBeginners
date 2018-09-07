@@ -52,7 +52,7 @@ public class Main {
     public static List<String> filterParityOdd(@NotNull List<String> strings) {
         Predicate<String> predicate = s -> (Integer.parseInt(s) % 2) == 0;
 
-        Map<Boolean, List<String>> integerListMap = strings.stream()
+        Map<Boolean, List<String>> map = strings.stream()
                 .collect(Collectors.partitioningBy(predicate));
 
         int sum = strings.stream()
@@ -60,9 +60,9 @@ public class Main {
                 .sum();
 
         if (sum != 0) {
-            return integerListMap.get(false);
+            return map.get(false);
         } else {
-            return integerListMap.get(true);
+            return map.get(true);
         }
     }
 }
