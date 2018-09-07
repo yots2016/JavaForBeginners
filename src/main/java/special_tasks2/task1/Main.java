@@ -27,7 +27,6 @@ public class Main {
         String min = Collections.min(stringList, Comparator.comparingInt(Integer::parseInt));
         stringList.remove(min);
         stringList.add(0, min);
-
         return stringList;
     }
 
@@ -51,26 +50,21 @@ public class Main {
     }
 
     public static List<String> filterParityOdd(@NotNull List<String> strings) {
-        List<String> result;
-
         int sum = strings.stream()
                 .mapToInt(Integer::parseInt)
                 .sum();
 
-        if (sum % 2 != 0) {
-            result = getStrings(strings, n -> n % 2 == 0);
-        } else {
-            result = getStrings(strings, n -> n % 2 != 0);
-        }
+        Predicate<String> predicate = s -> (Integer.parseInt(s) % 2) == 0;
 
-        return result;
+        Map<Boolean, List<String>> integerListMap = getStrings(strings, predicate);
+
+        System.out.println(integerListMap);
+
+        return null;
     }
 
-    public static List<String> getStrings(@NotNull List<String> strings, IntPredicate intPredicate) {
+    public static Map<Boolean, List<String>> getStrings(@NotNull List<String> strings, Predicate<String> predicate) {
         return strings.stream()
-                            .mapToInt(Integer::parseInt)
-                            .filter(intPredicate)
-                            .mapToObj(String::valueOf)
-                            .collect(Collectors.toList());
+                .collect(Collectors.partitioningBy(predicate));
     }
 }
