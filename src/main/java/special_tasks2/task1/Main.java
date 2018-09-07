@@ -29,7 +29,7 @@ public class Main {
 
         System.out.println(min(strings));
         System.out.println(max(strings));
-        System.out.println(filterParityOdd(strings));
+        System.out.println(filterParity(strings));
 
     }
 
@@ -61,7 +61,7 @@ public class Main {
         return result;
     }
 
-    public static List<String> filterParityOdd(@NotNull List<String> strings) {
+    public static List<String> filterParity(@NotNull List<String> strings) {
         Predicate<String> predicate = s -> (Integer.parseInt(s) % 2) != 0;
 
         Map<Boolean, List<String>> map = strings.stream()
