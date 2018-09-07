@@ -22,16 +22,17 @@ public class Main {
     }
 
     public static List<String> min(@NotNull List<String> strings) {
-        String  min = Collections.min(strings);
-
         List<String> stringList = new ArrayList<>(strings);
-        Collections.swap(stringList, 0, stringList.indexOf(min));
+
+        String min = Collections.min(stringList, Comparator.comparingInt(Integer::parseInt));
+        stringList.remove(min);
+        stringList.add(0, min);
 
         return stringList;
     }
 
     public static List<String> max(@NotNull List<String> strings) {
-        int max = Integer.parseInt(Collections.max(strings));
+        int max = Integer.parseInt(Collections.max(strings, Comparator.comparingInt(Integer::parseInt)));
 
         int indexOfMax = strings.indexOf(String.valueOf(max));
 
