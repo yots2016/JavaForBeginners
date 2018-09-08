@@ -45,12 +45,15 @@ public class Main {
     public static List<String> max(@NotNull List<String> strings) {
         int indexOfMax = 0;
         String max = "";
+        String currentElement;
 
         for (int i = 0; i < strings.size(); i++) {
-            if (Integer.parseInt(strings.get(i)) > Integer.parseInt(strings.get(indexOfMax)))
+            currentElement = strings.get(i);
+
+            if (Integer.parseInt(currentElement) > Integer.parseInt(strings.get(indexOfMax)))
             {
                 indexOfMax = i;
-                max = strings.get(indexOfMax);
+                max = currentElement;
             }
         }
 
@@ -74,14 +77,7 @@ public class Main {
         Map<Boolean, List<String>> map = strings.stream()
                 .collect(Collectors.partitioningBy(predicate));
 
-        int sum = strings.stream()
-                .mapToInt(Integer::parseInt)
-                .sum();
-
-        if (sum % 2 != 0) {
-            return map.get(Parity.ODD.isPair());
-        } else {
-            return map.get(Parity.EVEN.isPair());
-        }
+        return map.get(strings.stream()
+                .mapToInt(Integer::parseInt).sum() % 2 != 0 ? Parity.ODD.isPair() : Parity.EVEN.isPair());
     }
 }
