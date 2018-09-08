@@ -34,7 +34,7 @@ public class Main {
     }
 
     public static List<String> min(@NotNull List<String> strings) {
-        List<String> stringList = new ArrayList<>(strings);
+        List<String> stringList = new LinkedList<>(strings);
 
         String min = Collections.min(stringList, Comparator.comparingInt(Integer::parseInt));
         stringList.remove(min);
@@ -43,9 +43,16 @@ public class Main {
     }
 
     public static List<String> max(@NotNull List<String> strings) {
-        String  max = Collections.max(strings, Comparator.comparingInt(Integer::parseInt));
+        int indexOfMax = 0;
+        String max = "";
 
-        int indexOfMax = strings.indexOf(max);
+        for (int i = 0; i < strings.size(); i++) {
+            if (Integer.parseInt(strings.get(i)) > Integer.parseInt(strings.get(indexOfMax)))
+            {
+                indexOfMax = i;
+                max = strings.get(indexOfMax);
+            }
+        }
 
         List<String> beforeMax = strings.subList(0, indexOfMax);
         List<String> afterMax = strings.subList(indexOfMax + 1, strings.size());
