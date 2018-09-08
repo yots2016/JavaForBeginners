@@ -34,12 +34,13 @@ public class Main {
     }
 
     public static List<String> min(@NotNull List<String> strings) {
-        LinkedList<String> stringList = new LinkedList<>(strings);
+        LinkedList<String> result = new LinkedList<>(strings);
 
-        String min = Collections.min(stringList, Comparator.comparingInt(Integer::parseInt));
-        stringList.remove(min);
-        stringList.addFirst(min);
-        return stringList;
+        String min = Collections.min(result, Comparator.comparingInt(Integer::parseInt));
+        result.remove(min);
+        result.addFirst(min);
+
+        return result;
     }
 
     public static List<String> max(@NotNull List<String> strings) {
