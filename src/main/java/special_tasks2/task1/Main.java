@@ -34,11 +34,11 @@ public class Main {
     }
 
     public static List<String> min(@NotNull List<String> strings) {
-        List<String> stringList = new LinkedList<>(strings);
+        LinkedList<String> stringList = new LinkedList<>(strings);
 
         String min = Collections.min(stringList, Comparator.comparingInt(Integer::parseInt));
         stringList.remove(min);
-        stringList.add(0, min);
+        stringList.addFirst(min);
         return stringList;
     }
 
