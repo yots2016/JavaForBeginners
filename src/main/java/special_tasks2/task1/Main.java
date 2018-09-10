@@ -8,21 +8,6 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Main {
-    enum Parity {
-        EVEN(true),
-        ODD(false);
-
-        private boolean parity;
-
-        Parity(boolean parity) {
-            this.parity = parity;
-        }
-
-        public boolean isPair() {
-            return parity;
-        }
-    }
-
     public static void main(String[] args) {
         List<String> strings = IntStream.rangeClosed(1, 100).mapToObj(String::valueOf).collect(Collectors.toList());
         Collections.shuffle(strings);
@@ -74,6 +59,6 @@ public class Main {
                 .collect(Collectors.partitioningBy(predicate));
 
         return map.get(strings.stream()
-                .mapToInt(Integer::parseInt).sum() % 2 != 0 ? Parity.ODD.isPair() : Parity.EVEN.isPair());
+                .mapToInt(Integer::parseInt).sum() % 2 == 0);
     }
 }
