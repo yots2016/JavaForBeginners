@@ -55,10 +55,9 @@ public class Main {
     public static List<String> filterParity(@NotNull List<String> strings) {
         Predicate<String> predicate = s -> (Integer.parseInt(s) % 2) != 0;
 
-        Map<Boolean, List<String>> map = strings.stream()
-                .collect(Collectors.partitioningBy(predicate));
-
-        return map.get(strings.stream()
-                .mapToInt(Integer::parseInt).sum() % 2 == 0);
+        return strings.stream()
+                .collect(Collectors.partitioningBy(predicate))
+                .get(strings.stream()
+                        .mapToInt(Integer::parseInt).sum() % 2 == 0);
     }
 }
