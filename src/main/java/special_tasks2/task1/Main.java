@@ -3,6 +3,7 @@ package special_tasks2.task1;
 import com.sun.istack.internal.NotNull;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -53,11 +54,12 @@ public class Main {
     }
 
     public static List<String> filterParity(@NotNull List<String> strings) {
+        AtomicLong sum = new AtomicLong();
         return strings.stream()
-                .collect(Collectors.partitioningBy(s -> (Integer.parseInt(s) % 2) != 0))
-                .get(strings.stream()
-                        .reduce(0,
-                                (sum, string) -> sum += Integer.parseInt(string),
-                                (sum1, sum2) -> sum1 + sum2) % 2 == 0);
+                .collect(Collectors.partitioningBy(s -> {
+                    int x = Integer.parseInt(s);
+                    sum.addAndGet(x);
+                    return x % 2 != 0; }))
+                .get(sum.longValue() % 2 == 0);
     }
 }
