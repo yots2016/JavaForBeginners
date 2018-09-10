@@ -29,10 +29,12 @@ public class Main {
 
     public static List<String> max(@NotNull List<String> strings) {
         int indexOfMax = 0;
+        int max = 0;
 
         for (int i = 0; i < strings.size(); i++) {
-            if (Integer.parseInt(strings.get(i)) > Integer.parseInt(strings.get(indexOfMax)))
+            if (Integer.parseInt(strings.get(i)) > max)
             {
+                max = Integer.parseInt(strings.get(i));
                 indexOfMax = i;
             }
         }
