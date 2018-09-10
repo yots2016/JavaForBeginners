@@ -3,7 +3,6 @@ package special_tasks2.task1;
 import com.sun.istack.internal.NotNull;
 
 import java.util.*;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -32,7 +31,6 @@ public class Main {
         int indexOfMax = 0;
 
         for (int i = 0; i < strings.size(); i++) {
-
             if (Integer.parseInt(strings.get(i)) > Integer.parseInt(strings.get(indexOfMax)))
             {
                 indexOfMax = i;
