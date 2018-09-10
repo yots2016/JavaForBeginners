@@ -54,6 +54,8 @@ public class Main {
         return strings.stream()
                 .collect(Collectors.partitioningBy(s -> (Integer.parseInt(s) % 2) != 0))
                 .get(strings.stream()
-                        .mapToInt(Integer::parseInt).sum() % 2 == 0);
+                        .reduce(0,
+                                (sum, string) -> sum += Integer.parseInt(string),
+                                (sum1, sum2) -> sum1 + sum2) % 2 == 0);
     }
 }
