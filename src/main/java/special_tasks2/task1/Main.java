@@ -45,28 +45,23 @@ public class Main {
 
     public static List<String> max(@NotNull List<String> strings) {
         int indexOfMax = 0;
-        String max = "";
-        String currentElement;
 
         for (int i = 0; i < strings.size(); i++) {
-            currentElement = strings.get(i);
 
-            if (Integer.parseInt(currentElement) > Integer.parseInt(strings.get(indexOfMax)))
+            if (Integer.parseInt(strings.get(i)) > Integer.parseInt(strings.get(indexOfMax)))
             {
                 indexOfMax = i;
-                max = currentElement;
             }
         }
 
         List<String> beforeMax = strings.subList(0, indexOfMax);
-        List<String> afterMax = strings.subList(indexOfMax + 1, strings.size());
+        List<String> afterMax = strings.subList(indexOfMax, strings.size());
 
         beforeMax.sort(Comparator.comparingInt(Integer::parseInt));
         afterMax.sort((a, b) -> Integer.compare(Integer.parseInt(b), Integer.parseInt(a)));
 
-        List<String> result = new ArrayList<>(beforeMax.size() + afterMax.size() + 1);
+        List<String> result = new ArrayList<>(beforeMax.size() + afterMax.size());
         result.addAll(beforeMax);
-        result.add(max);
         result.addAll(afterMax);
 
         return result;
