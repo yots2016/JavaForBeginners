@@ -77,8 +77,7 @@ public class Main {
                         throw new IllegalStateException(e);
                     }
                 })
-                .mapToInt(n -> n)
-                .sum();
+                .reduce(0, (n1, n2) -> n1 + n2);
 
         executorService.shutdown();
 
