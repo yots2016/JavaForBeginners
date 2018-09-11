@@ -69,6 +69,10 @@ public class Main {
             }
         }
 
+        return sum(executorService, callables);
+    }
+
+    public static long sum(ExecutorService executorService, List<Callable<Integer>> callables) throws InterruptedException {
         int sum = executorService.invokeAll(callables).stream()
                 .map(integerFuture -> {
                     try {
