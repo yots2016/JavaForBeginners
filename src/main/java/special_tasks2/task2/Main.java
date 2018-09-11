@@ -28,7 +28,7 @@ public class Main {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        System.out.println(sum(181));
+        System.out.println(sum(180));
     }
 
     public static long sum(int inputNumber) throws InterruptedException {
@@ -54,16 +54,10 @@ public class Main {
     }
 
     public static long getElementsSum(Integer[] integers) throws InterruptedException {
-        int threadsNumber = Runtime.getRuntime().availableProcessors();
-        ExecutorService executorService = Executors.newFixedThreadPool(threadsNumber);
+        ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
         List<Callable<Integer>> callables = new ArrayList<>();
 
-        int integersLength = integers.length;
-        if (integersLength % threadsNumber == 0) {
-            processEvenNumber(integers, threadsNumber, callables);
-        } else {
-            processOddNumber(integers, threadsNumber, callables);
-        }
+        processNumbers(integers, callables);
 
         long sum = sumResults(executorService, callables);
 
@@ -71,26 +65,27 @@ public class Main {
         return sum;
     }
 
-    public static void processOddNumber(Integer[] integers, int threadsNumber, List<Callable<Integer>> callables) {
+    public static void processNumbers(Integer[] integers, List<Callable<Integer>> callables) {
+        int threadsNumber = Runtime.getRuntime().availableProcessors();
         int integersLength = integers.length;
-
         int step = integersLength / threadsNumber;
         int remainder = integersLength % threadsNumber;
 
-        callables.add(new MyCallable(0, remainder - 1, integers));
+        if (integersLength % threadsNumber == 0) {
+            partitionArray(integers, callables, step, 0);
+        } else {
+            partitionArray(integers, callables, remainder - 1,0);
 
-        if (step != 0) {
-            for (int i = 0, firstIndex = remainder, lastIndex = (step + remainder - 1); i < threadsNumber; i++, firstIndex += step, lastIndex += step) {
-                callables.add(new MyCallable(firstIndex, lastIndex, integers));
+            if (step != 0) {
+                partitionArray(integers, callables, step, remainder);
             }
         }
     }
 
-    public static void processEvenNumber(Integer[] integers, int threadsNumber, List<Callable<Integer>> callables) {
-        int integersLength = integers.length;
+    public static void partitionArray(Integer[] integers, List<Callable<Integer>> callables, int step, int inputFirstIndex) {
+        int threadsNumber = Runtime.getRuntime().availableProcessors();
 
-        int step = integersLength / threadsNumber;
-        for (int i = 0, firstIndex = 0, lastIndex = step - 1; i < threadsNumber; i++, firstIndex += step, lastIndex += step) {
+        for (int i = 0, firstIndex = inputFirstIndex, lastIndex = (step + firstIndex - 1); i < threadsNumber; i++, firstIndex += step, lastIndex += step) {
             callables.add(new MyCallable(firstIndex, lastIndex, integers));
         }
     }
