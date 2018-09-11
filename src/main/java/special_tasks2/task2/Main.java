@@ -32,38 +32,33 @@ public class Main {
     }
 
     public static long sum(int inputNumber) throws InterruptedException {
-        Integer[] integers;
+        Integer[] integers = createArray(inputNumber);
 
-        integers = inputVerification(inputNumber);
+        initArray(integers);
 
-        initList(integers);
-
-        return getSum(integers);
+        return getElementsSum(integers);
     }
 
-    public static Integer[] inputVerification(int inputNumber) {
-        Integer[] integers;
+    public static Integer[] createArray(int inputNumber) {
         if (inputNumber < 0) {
-            integers = new Integer[1];
+            return new Integer[1];
         } else {
-            integers = new Integer[inputNumber + 1];
+            return new Integer[inputNumber + 1];
         }
-        return integers;
     }
 
-    public static void initList(Integer[] integers) {
+    public static void initArray(Integer[] integers) {
         for (int i = 0; i < integers.length; i++) {
             integers[i] = i;
         }
     }
 
-    public static long getSum(Integer[] integers) throws InterruptedException {
-        int integersLength = integers.length;
-
+    public static long getElementsSum(Integer[] integers) throws InterruptedException {
         int threadsNumber = Runtime.getRuntime().availableProcessors();
         ExecutorService executorService = Executors.newFixedThreadPool(threadsNumber);
         List<Callable<Integer>> callables = new ArrayList<>();
 
+        int integersLength = integers.length;
         if (integersLength % threadsNumber == 0) {
             processEvenNumber(integers, threadsNumber, callables);
         } else {
