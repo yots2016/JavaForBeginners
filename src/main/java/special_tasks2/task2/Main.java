@@ -69,11 +69,15 @@ public class Main {
             }
         }
 
-        return sum(executorService, callables);
+        long sum = sumResults(executorService, callables);
+
+        executorService.shutdown();
+
+        return sum;
     }
 
-    public static long sum(ExecutorService executorService, List<Callable<Integer>> callables) throws InterruptedException {
-        int sum = executorService.invokeAll(callables).stream()
+    public static long sumResults(ExecutorService executorService, List<Callable<Integer>> callables) throws InterruptedException {
+        return executorService.invokeAll(callables).stream()
                 .map(integerFuture -> {
                     try {
                         return integerFuture.get();
@@ -82,9 +86,5 @@ public class Main {
                     }
                 })
                 .reduce(0, (n1, n2) -> n1 + n2);
-
-        executorService.shutdown();
-
-        return sum;
     }
 }
