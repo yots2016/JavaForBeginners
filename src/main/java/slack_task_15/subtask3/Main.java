@@ -17,13 +17,13 @@ public class Main {
 
         String[] strings = new String[stringsNumber];
 
-        int[] sum = {0};
+        double[] sum = {0};
         for (int i = 0; i < stringsNumber; i++) {
             strings[i] = scanner.nextLine();
             sum[0]+=strings[i].length();
         }
 
-        double[] average = {(double) sum[0] / strings.length};
+        double[] average = { sum[0] / strings.length};
 
         Map<Boolean, List<String>> map = Stream.of(strings)
                 .collect(Collectors.partitioningBy(s -> s.length() > average[0]));
