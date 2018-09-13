@@ -22,7 +22,7 @@ public class Main {
         }
 
         Comparator<String> asc = Comparator.comparing(String::length,Integer::compareTo);
-        Comparator<String> desc = Comparator.comparing(String::length, Integer::compareTo).reversed();
+        Comparator<String> desc = asc.reversed();
 
         System.out.println();
         Arrays.sort(strings, asc);
