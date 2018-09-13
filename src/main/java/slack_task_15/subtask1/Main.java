@@ -9,18 +9,18 @@ public class Main {
         int stringsNumber;
         do {
             System.out.println("Enter the number of strings from 1: ");
-            stringsNumber = scanner.nextInt();
+            stringsNumber = Integer.parseInt(scanner.nextLine());
         } while (stringsNumber <= 0);
         System.out.printf("Enter %d strings:%n", stringsNumber);
 
-        String s = scanner.next();
+        String s = scanner.nextLine();
         int length = s.length();
 
         String minString = s, maxString = s;
         int min = length, max = length;
 
         for (int i = 0; i < stringsNumber - 1; i++) {
-            s = scanner.next();
+            s = scanner.nextLine();
             length = s.length();
 
             if (length > max) {
@@ -34,6 +34,7 @@ public class Main {
             }
         }
 
+        System.out.println();
         System.out.printf("Max string - \"%s\", length - %d.%n", maxString, max);
         System.out.printf("Min string - \"%s\", length - %d.", minString, min);
     }
