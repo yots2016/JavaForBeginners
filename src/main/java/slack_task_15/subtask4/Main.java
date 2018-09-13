@@ -1,10 +1,6 @@
 package slack_task_15.subtask4;
 
-import java.util.Collections;
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,10 +15,33 @@ public class Main {
 
         String[] strings = new String[stringsNumber];
 
-        for (int i = 0; i < stringsNumber; i++) {
+        String targetString = scanner.next();
+        int minNumberUniqueChars = getNumberUniqueСhars(targetString);
+
+
+        for (int i = 0; i < stringsNumber - 1; i++) {
             strings[i] = scanner.next();
+            if (getNumberUniqueСhars(strings[i]) < minNumberUniqueChars) {
+                minNumberUniqueChars = getNumberUniqueСhars(strings[i]);
+                targetString = strings[i];
+            }
         }
 
+        System.out.printf("Target word - \"%s\".", targetString);
+    }
 
+    private static int getNumberUniqueСhars(String string){
+        StringBuilder uniqueString = new StringBuilder();
+        char currentChar;
+
+        for (int i = 0; i < string.length(); i++) {
+            currentChar = string.charAt(i);
+
+            if (uniqueString.indexOf(String.valueOf(currentChar)) == -1) {
+                uniqueString.append(currentChar);
+            }
+        }
+
+        return uniqueString.length();
     }
 }
