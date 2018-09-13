@@ -17,13 +17,13 @@ public class Main {
 
         String[] strings = new String[stringsNumber];
 
-        double[] sum = {0};
+        int[] sum = {0};
         for (int i = 0; i < stringsNumber; i++) {
             strings[i] = scanner.nextLine();
             sum[0]+=strings[i].length();
         }
 
-        double[] average = {sum[0] / strings.length};
+        double[] average = {(double) sum[0] / strings.length};
 
         Map<Boolean, List<String>> map = Stream.of(strings)
                 .collect(Collectors.partitioningBy(s -> s.length() > average[0]));
@@ -35,6 +35,7 @@ public class Main {
                 System.out.println("Strings whose length is greater than the average:");
             }
             stringList.forEach(s -> System.out.printf("String - %s. It`s length - %d.%n", s, s.length()));
+            System.out.println();
         });
 
 
