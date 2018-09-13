@@ -22,12 +22,11 @@ public class Main {
         }
 
         Comparator<String> asc = Comparator.comparing(String::length,Integer::compareTo);
-        Comparator<String> desc = asc.reversed();
 
         System.out.println();
         Arrays.sort(strings, asc);
         System.out.printf("Asc sorted strings - %s.%n", Arrays.toString(strings));
-        Arrays.sort(strings, desc);
+        Arrays.sort(strings, asc.reversed());
         System.out.printf("Desc sorted strings - %s.", Arrays.toString(strings));
     }
 }
