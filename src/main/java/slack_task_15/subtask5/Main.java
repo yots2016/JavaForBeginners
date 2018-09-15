@@ -29,10 +29,11 @@ public class Main {
 
     public static String[] getLatinWords(String[] inputArray) {
         Pattern latinPattern = Pattern.compile("[A-z]+");
+        Matcher latinMatcher;
         List<String> result = new ArrayList<>();
 
         for (int i = 0; i < inputArray.length; i++) {
-            Matcher latinMatcher = latinPattern.matcher(inputArray[i]);
+            latinMatcher = latinPattern.matcher(inputArray[i]);
 
                 if (latinMatcher.matches()) {
                     result.add(inputArray[i]);
