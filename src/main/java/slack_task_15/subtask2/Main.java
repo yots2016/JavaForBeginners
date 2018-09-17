@@ -13,7 +13,7 @@ public class Main {
         int stringsNumber;
         do {
             System.out.println("Enter the number of strings from 1: ");
-            //Присвоюється кількість ріядків
+            //Присвоюється кількість рядків
             stringsNumber = Integer.parseInt(scanner.nextLine());
             //Умова виходу з циклу
         } while (stringsNumber <= 0);
