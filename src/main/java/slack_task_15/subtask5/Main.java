@@ -59,12 +59,12 @@ public class Main {
 
     //Метод, який вілбирає слова у яких рівна к-сть голосних і приголосних букв
     public static List<String> getTargetWords(String[] inputArray) {
-        ////Оголошення, визначення та ініціалізація змінної типу String[]
+        //Оголошення, визначення та ініціалізація змінної типу String[]
         String[] latinWords = getLatinWords(inputArray);
 
-        ////Оголошення, визначення змінної типу List<String>
+        //Оголошення, визначення змінної типу List<String>
         List<String> result = new ArrayList<>();
-        ////Оголошення змінних типу int для підрахунку к-сті голосних та приголосних букв
+        //Оголошення змінних типу int для підрахунку к-сті голосних та приголосних букв
         int loudLetters, consonantLetters;
 
         //Цикл перебору всіх слів масиву inputArray
