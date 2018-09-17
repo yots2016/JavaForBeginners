@@ -19,7 +19,7 @@ public class Main {
         } while (stringsNumber <= 0);
         System.out.printf("Enter %d strings:%n", stringsNumber);
 
-        //Оголошення масиву рядків
+        //Оголошення та визначення масиву рядків
         String[] strings = new String[stringsNumber];
 
         //Ініалізація масиву рядків
