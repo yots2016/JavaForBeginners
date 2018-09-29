@@ -1,6 +1,5 @@
 package special_tasks2.task1;
 
-import com.sun.istack.internal.NotNull;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
@@ -18,7 +17,7 @@ public class Main {
 
     }
 
-    public static List<String> min(@NotNull List<String> strings) {
+    public static List<String> min(List<String> strings) {
         LinkedList<String> result = new LinkedList<>(strings);
 
         String min = Collections.min(result, Comparator.comparingInt(Integer::parseInt));
@@ -28,7 +27,7 @@ public class Main {
         return result;
     }
 
-    public static List<String> max(@NotNull List<String> strings) {
+    public static List<String> max(List<String> strings) {
         int indexOfMax = 0;
         int max = 0;
 
@@ -53,7 +52,7 @@ public class Main {
         return result;
     }
 
-    public static List<String> filterParity(@NotNull List<String> strings) {
+    public static List<String> filterParity(List<String> strings) {
         AtomicLong sum = new AtomicLong();
         return strings.stream()
                 .collect(Collectors.partitioningBy(s -> {
