@@ -16,7 +16,7 @@ cmake-build-release/
 *.iws
 
 # IntelliJ
-/JavaForBeginners.iml
+*.iml
 .idea/
 target/
 out/
