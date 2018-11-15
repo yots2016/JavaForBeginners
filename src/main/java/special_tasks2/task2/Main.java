@@ -1,6 +1,7 @@
 package special_tasks2.task2;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
@@ -28,28 +29,18 @@ public class Main {
     }
 
     private static List<Callable<Integer>> divideListByNumberOfThreads(List<Integer> integers) {
-        int threadsNumber = Runtime.getRuntime().availableProcessors();
-
         List<Callable<Integer>> callables = new ArrayList<>();
+        int partitionSize = Runtime.getRuntime().availableProcessors();
+        List<List<Integer>> integersPartitions = new LinkedList<>();
 
-        final int integersSize = integers.size();
-        final int remainder = integersSize % threadsNumber;
-        final int integersSizeWithoutRemainder = integersSize - remainder;
-        final int step = integersSize / threadsNumber;
-
-        if (step != 0) {
-            for (int i = 0; i < integersSizeWithoutRemainder; i += step) {
-                int finalI = i;
-
-                callables.add(() -> integers.subList(finalI, finalI + step).stream()
-                        .reduce(0, (n1, n2) -> n1 + n2));
-            }
+        for (int i = 0; i < integers.size(); i += partitionSize) {
+            integersPartitions.add(integers.subList(i,
+                    Math.min(i + partitionSize, integers.size())));
         }
 
-        if (remainder != 0) {
-            callables.add(() -> integers.subList(integersSizeWithoutRemainder, integersSize).stream()
-                    .reduce(0, (n1, n2) -> n1 + n2));
-        }
+        integersPartitions.forEach(integersPartition -> callables.add(() -> integersPartition.stream()
+                .reduce(0, (n1, n2) -> n1 + n2)));
+
         return callables;
     }
 
