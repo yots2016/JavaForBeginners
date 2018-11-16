@@ -1,64 +1,67 @@
 package special_tasks2.task2;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.*;
+import java.util.Random;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Main {
-    private final static int MAX_NUMBER = 180;
+    private final static int MAX_NUMBER = new Random().nextInt(300);
+    private final static int THREADS_NUMBER = Runtime.getRuntime().availableProcessors();
 
-    public static void main(String[] args) {
-        try {
-            System.out.println(sum(MAX_NUMBER));
-        } catch (ExecutionException | InterruptedException e) {
-            throw new IllegalStateException();
-        }
-    }
-
-    private static int sum(int maxNumber) throws ExecutionException, InterruptedException {
-        final List<Integer> integers = IntStream.rangeClosed(0, maxNumber)
+    public static void main(String[] args) throws InterruptedException {
+        List<Integer> integers = IntStream.rangeClosed(0, MAX_NUMBER)
                 .boxed()
                 .collect(Collectors.toList());
 
-        List<Callable<Integer>> callables = divideListByNumberOfThreads(integers);
+        List<List<Integer>> partitions = divideListToPartitions(integers);
 
-        return getSumOfNumbersThroughExecutorService(callables);
+        System.out.println(calculateSum(partitions));
     }
 
-    private static List<Callable<Integer>> divideListByNumberOfThreads(List<Integer> integers) {
-        List<Callable<Integer>> callables = new ArrayList<>();
-        int partitionSize = Runtime.getRuntime().availableProcessors();
-        List<List<Integer>> integersPartitions = new LinkedList<>();
+    private static List<List<Integer>> divideListToPartitions(List<Integer> integers) {
+        List<List<Integer>> partitions = new ArrayList<>();
+        int partitionSize = calculatePartitionSize(integers);
 
         for (int i = 0; i < integers.size(); i += partitionSize) {
-            integersPartitions.add(integers.subList(i,
-                    Math.min(i + partitionSize, integers.size())));
+            partitions.add(integers.subList(i, Math.min(i + partitionSize, integers.size())));
         }
-
-        integersPartitions.forEach(integersPartition -> callables.add(() -> integersPartition.stream()
-                .reduce(0, (n1, n2) -> n1 + n2)));
-
-        return callables;
+        return partitions;
     }
 
-    private static int getSumOfNumbersThroughExecutorService(List<Callable<Integer>> callables) throws InterruptedException, ExecutionException {
-        int threadsNumber = Runtime.getRuntime().availableProcessors();
+    private static int calculatePartitionSize(List<Integer> integers) {
+        int partitionSize;
 
-        ExecutorService executorService = Executors.newFixedThreadPool(threadsNumber);
+        if (integers.size() >= THREADS_NUMBER) {
+            partitionSize = integers.size() / THREADS_NUMBER;
+        } else {
+            partitionSize = 1;
+        }
+        return partitionSize;
+    }
 
-        int result = 0;
+    private static int calculateSum(List<List<Integer>> partitions) throws InterruptedException {
+        ExecutorService executorService = Executors.newFixedThreadPool(THREADS_NUMBER);
+        AtomicInteger atomicInteger = new AtomicInteger(0);
+        CountDownLatch countDownLatch = new CountDownLatch(partitions.size());
 
-        for (Future<Integer> integerFuture : executorService.invokeAll(callables)) {
-            result += integerFuture.get();
+        for (int i = 0; i < partitions.size(); i++) {
+            int finalI = i;
+            executorService.execute(() -> {
+               partitions.get(finalI).forEach(atomicInteger::addAndGet);
+               countDownLatch.countDown();
+            });
+
         }
 
+        countDownLatch.await();
         executorService.shutdown();
 
-        return result;
+        return atomicInteger.get();
     }
-
-
 }
